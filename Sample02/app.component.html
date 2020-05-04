@@ -1,0 +1,54 @@
+<h1 align="center">PIPES and SERVICES</h1>
+<table align="center">
+  <tr>
+    <td>
+    <h2 style="color:blueviolet"><u><i>Build in Pipes</i></u></h2>
+    <h4>{{ name| uppercase}}</h4>
+    <h4>{{ name | lowercase}}</h4>
+       <input [(ngModel)]="value" type="text">{{value | uppercase}}
+     <h4>{{ msg | titlecase}}</h4>
+     <h4>{{ msg | slice:3}}</h4>
+     <h4>{{ msg | slice:6:20}}</h4>
+     <h4>{{fullname | json}}</h4>
+
+     <h4>{{23.456 | number:'1.2-3'}}</h4>
+     <h4>{{23.456 | number:'3.5-6'}}</h4>
+     <h4>{{23.456 | number:'3.1-2'}}</h4>
+
+     <h4>{{0.23| percent}}</h4>
+
+     <h4>{{0.23 | currency}}</h4><!--by default currency is US$ -->
+
+     <h4>{{testDate}}</h4>
+     </td>
+     <td>
+     <h2 style="color:blueviolet"><u><i>Parameterised Pipes</i></u></h2>
+     <h4>{{testDate | date:'short'}}</h4>
+     <h4>{{testDate | date:'shortDate'}}</h4>
+     <h4>{{testDate | date:'shortTime'}}</h4>
+     <h4>{{testDate | date:'medium'}}</h4>
+     <h4>{{testDate | date:'mediumDate'}}</h4>
+     <h4>{{testDate | date:'mediumTime'}}</h4>
+     <h4>{{testDate | date:'longTime'}}</h4>
+
+     <h4>{{0.23 | currency:'GBP'}}</h4>
+     <h4>{{0.23 | currency:'GBP':'code' }}</h4>
+     <h4>{{0.23 | currency:'EUR'}}</h4>
+     <h4>{{0.23 | currency:'INR'}}</h4>
+     </td>
+   </tr>
+   <tr align="center">
+     <td>
+     <h2 style="color:blueviolet"><u><i>Multiple Pipes</i></u></h2>
+     <h4>{{testDate | date :'long' | uppercase}}</h4>
+     <h4>{{testDate | date :'long'| lowercase}}</h4>
+     </td>
+   </tr>
+ </table>
+ <h2 align="center" style="color:blueviolet"><u><i>Custom Pipes</i></u></h2>
+ <app-person-list></app-person-list>
+ <app-person-detail></app-person-detail>
+
+
+
+
