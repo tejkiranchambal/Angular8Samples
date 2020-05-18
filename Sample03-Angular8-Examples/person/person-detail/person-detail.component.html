@@ -1,0 +1,16 @@
+<h2 align="center">Details of Persons</h2>
+<table border="1" align="center" width="400" height="300"  class="font-size-custom">
+  <tr align="center">
+    <td>ID</td>
+    <td>NAME</td>
+    <td>AGE</td>
+    <td>GENDER</td>
+
+  </tr>
+<tr *ngFor="let p of person" align="center">
+  <td>{{p.id}}</td>
+  <td>{{p.name}}</td>
+  <td>{{p.age}}</td>
+  <td>{{p.gender}}</td>
+</tr>
+</table>

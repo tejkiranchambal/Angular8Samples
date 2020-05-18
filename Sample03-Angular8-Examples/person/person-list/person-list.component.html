@@ -1,0 +1,8 @@
+<h2 align="center">List of Persons</h2>
+<table border="1" align="center" width="200" height="250"  class="font-size-custom">
+<tr *ngFor="let p of person" align="center">
+  <td>
+    {{p.name | customPipe:p.gender}}
+   </td>
+</tr>
+</table>
