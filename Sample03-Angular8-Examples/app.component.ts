@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title= 'Angular 8 - Examples';
-
 }
 
