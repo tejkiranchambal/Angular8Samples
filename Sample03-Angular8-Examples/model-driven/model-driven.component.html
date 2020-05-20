@@ -1,14 +1,20 @@
 <div class="container-fluid">
   <h2 align="center">Registration Form</h2><hr>
-  <form [formGroup]="registrationForm" >
+  <form [formGroup] = "registrationForm" >
     <div class="row">
       <div class="col-md-3 offset-1 divColor">
         <pre>{{registrationForm.value | json}}</pre>
+        <pre>{{registrationForm.get('userName').errors | json}}</pre>
       </div>
       <div class="col-md-6 offset-1">
         <div class="form-group">
           <label>Username</label>
-          <input formControlName="userName" type="text" class="form-control">
+          <input [class.is-invalid]="userName.invalid" formControlName = "userName" type="text" class="form-control">
+          <!--<small class="text-danger" [class.d-none]="registrationForm.get('userName').valid">username in required</small>-->
+          <div *ngIf="registrationForm.get('userName').invalid">
+            <small class="text-danger" *ngIf="userName.errors?.required">username in required</small>
+            <small class="text-danger" *ngIf="userName.errors?.minlength">username must be at least 3 characters</small>
+          </div>
         </div>
 
         <div class="form-group">
@@ -20,8 +26,29 @@
           <label>Confirm Password</label>
           <input formControlName="confirmPassword" type="password" class="form-control">
         </div>
+        <div formGroupName="address">
+          <div class="form-group">
+            <label>City</label>
+            <input formControlName="city" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>State</label>
+            <input formControlName="state" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Pin Code</label>
+            <input formControlName="pinCode" type="text" class="form-control">
+          </div>
+      </div>
+
+        <hr>
 
         <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-secondary ml-2" type="button" (click)="loadApiData()">Load API Data</button>
+
+        <hr>
       </div>
     </div>
   </form>
