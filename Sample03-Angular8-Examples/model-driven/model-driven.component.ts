@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { FormGroup, FormControl } from "@angular/forms";
 import { FormBuilder, Validators } from "@angular/forms";
+import { forbiddenNameValidator } from "../shared/user-name.validator";
 
 @Component({
   selector: 'app-model-driven',
@@ -15,9 +16,12 @@ export class ModelDrivenComponent implements OnInit {
     return this.registrationForm.get('userName');
   }
 
+  get password(){
+    return this.registrationForm.get('password');
+  }
   registrationForm = this.fb.group({
-    userName : ['', [Validators.required, Validators.minLength(3)]],
-    password: [''],
+    userName : ['', [Validators.required, Validators.minLength(3), forbiddenNameValidator]],
+    password: ['',[Validators.required, Validators.minLength(6)]],
     confirmPassword: [''],
     address : this.fb.group({
       city : [''],

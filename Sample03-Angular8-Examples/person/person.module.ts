@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {PersonDetailComponent} from "./person-detail/person-detail.component";
 import {PersonListComponent} from "./person-list/person-list.component";
 import {FormsModule} from "@angular/forms";
-import {SharedModule} from "../shared-module/shared.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
