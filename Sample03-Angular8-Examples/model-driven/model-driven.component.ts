@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //import { FormGroup, FormControl } from "@angular/forms";
-import { FormBuilder, Validators } from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { forbiddenNameValidator } from "../shared/user-name.validator";
+import {passwordValidator} from "../shared/password.validator";
 
 @Component({
   selector: 'app-model-driven',
@@ -19,20 +20,23 @@ export class ModelDrivenComponent implements OnInit {
   get password(){
     return this.registrationForm.get('password');
   }
+  ngOnInit() {
+  }
+
   registrationForm = this.fb.group({
-    userName : ['', [Validators.required, Validators.minLength(3), forbiddenNameValidator]],
-    password: ['',[Validators.required, Validators.minLength(6)]],
-    confirmPassword: [''],
+    userName : ['', [Validators.required, Validators.minLength(3), forbiddenNameValidator(/admin/)]],
+    password: ['',[Validators.required, Validators.minLength(6), forbiddenNameValidator(/password/)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+    email : [''],
+    subscribe : [false],
     address : this.fb.group({
       city : [''],
       state : [''],
       pinCode : ['']
     })
-  });
+  }, { validators : passwordValidator } );
 
-  ngOnInit() {
-
-  }
+ 
 
   // Using FormGroup Classes
   /*registrationForm = new FormGroup({

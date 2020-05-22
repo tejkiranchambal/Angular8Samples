@@ -5,6 +5,7 @@
       <div class="col-md-3 offset-1 divColor">
         <pre>{{registrationForm.value | json}}</pre>
         <pre>{{registrationForm.get('userName').errors | json}}</pre>
+        <pre>{{registrationForm.errors | json}}</pre>
       </div>
       <div class="col-md-6 offset-1">
         <div class="form-group">
@@ -21,11 +22,23 @@
 
         <div class="form-group">
           <label>Password</label>
-          <input formControlName="password" type="password" class="form-control">
+          <input [class.is-invalid]="password.invalid" formControlName="password" type="password" class="form-control">
+          <div *ngIf="password.invalid">
+            <small class="text-danger" *ngIf="password.errors?.required">password is required!</small>
+            <small class="text-danger" *ngIf="password.errors?.minlength">password must be at least 6 characters!</small>
+            <small class="text-danger" *ngIf="password.errors?.forbiddenName">Entered {{password.errors?.forbiddenName.value}} is not allowed!</small>
+          </div>
         </div>
 
         <div class="form-group">
           <label>Confirm Password</label>
+          <input [class.is-invalid]="registrationForm.errors?.misMatch || registrationForm.get('confirmPassword').invalid" formControlName="confirmPassword" type="password" class="form-control">
+          <div *ngIf="registrationForm.get('confirmPassword').invalid">
+            <small class="text-danger" *ngIf="registrationForm.errors?.misMatch ">password do not match!</small>
+            <small class="text-danger" *ngIf="registrationForm.get('confirmPassword').errors?.required">
+              password is required!</small>
+          </div>
+        </div>
           <input formControlName="confirmPassword" type="password" class="form-control">
         </div>
         <div formGroupName="address">
