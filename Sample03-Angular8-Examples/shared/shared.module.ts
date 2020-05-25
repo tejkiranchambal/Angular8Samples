@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CustomPipePipe} from "../../pipes/custom-pipe.pipe";
+import {CustomPipePipe} from "../pipes/custom-pipe.pipe";
 
 @NgModule({
   declarations: [
