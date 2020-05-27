@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <h2 align="center">Registration Form</h2><hr>
+  <form [formGroup] = "registrationForm" >
+    <div class="row">
+      <div class="col-md-3 offset-1 divColor">
+        <pre>{{registrationForm.value | json}}</pre>
+        <pre>{{registrationForm.get('userName').errors | json}}</pre>
+        <pre>{{registrationForm.errors | json}}</pre>
+      </div>
+      <div class="col-md-6 offset-1">
+        <div class="form-group">
+          <label>Username</label>
+          <input [class.is-invalid]="userName.invalid" formControlName = "userName" type="text" class="form-control">
+          <!--<small class="text-danger" [class.d-none]="registrationForm.get('userName').valid">username in required</small>-->
+          <div *ngIf="userName.invalid">
+            <small class="text-danger" *ngIf="userName.errors?.required">username is required!</small>
+            <small class="text-danger" *ngIf="userName.errors?.minlength">username must be at least 3 characters!</small>
+            <small class="text-danger" *ngIf="userName.errors?.forbiddenName">{{userName.errors?.forbiddenName.value}}
+              username not allowed!</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input [class.is-invalid]="password.invalid" formControlName="password" type="password" class="form-control">
+          <div *ngIf="password.invalid">
+            <small class="text-danger" *ngIf="password.errors?.required">password is required!</small>
+            <small class="text-danger" *ngIf="password.errors?.minlength">password must be at least 6 characters!</small>
+            <small class="text-danger" *ngIf="password.errors?.forbiddenName">Entered {{password.errors?.forbiddenName.value}} is not allowed!</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input [class.is-invalid]="registrationForm.errors?.misMatch || registrationForm.get('confirmPassword').invalid" formControlName="confirmPassword" type="password" class="form-control">
+          <div *ngIf="registrationForm.get('confirmPassword').invalid">
+            <small class="text-danger" *ngIf="registrationForm.errors?.misMatch ">password do not match!</small>
+            <small class="text-danger" *ngIf="registrationForm.get('confirmPassword').errors?.required">
+              password is required!</small>
+          </div>
+        </div>
+          <input formControlName="confirmPassword" type="password" class="form-control">
+        </div>
+        <div formGroupName="address">
+          <div class="form-group">
+            <label>City</label>
+            <input formControlName="city" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>State</label>
+            <input formControlName="state" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Pin Code</label>
+            <input formControlName="pinCode" type="text" class="form-control">
+          </div>
+      </div>
+
+        <hr>
+
+        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-secondary ml-2" type="button" (click)="loadApiData()">Load API Data</button>
+
+        <hr>
+      </div>
+    </div>
+  </form>
+
+</div>

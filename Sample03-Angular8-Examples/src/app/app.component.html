@@ -1,0 +1,29 @@
+
+  <div class="container-fluid font-size-custom">
+    <div>
+      <h3>{{ title }}</h3>
+    </div>
+    <ul >
+      <li>
+        <a routerLink="PersonList" routerLinkActive="active">Person-List   </a>
+      </li>
+      <li>
+        <a routerLink="PersonDetail" routerLinkActive="active"> Person-Details   </a>
+      </li>
+      <li>
+        <a routerLink="TemplateDrivenForm" routerLinkActive="active"> Template Driven Form  </a>
+      </li>
+      <li>
+        <a routerLink="PipesServices" routerLinkActive="active">Pipes & Services </a>
+      </li>
+      <li>
+        <a routerLink="ModelDrivenForm" routerLinkActive="active">Model Driven Form </a>
+      </li>
+    </ul>
+  </div>
+<br>
+<br>
+
+  <!--routed view goes here-->
+
+  <router-outlet></router-outlet>

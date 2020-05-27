@@ -1,0 +1,24 @@
+ul {
+  list-style-type: none;
+  display: inline-flex;
+}
+li a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+}
+li a.active {
+  color: #039be5;
+}
+li a:visited, a:link {
+  color: #607D8B;
+}
+li a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+.divColor{
+  background-color: #eee;
+}

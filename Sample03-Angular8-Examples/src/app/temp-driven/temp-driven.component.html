@@ -1,0 +1,63 @@
+<div class="container-md" >
+  <form #tdf= 'ngForm' (ngSubmit)= "myfun(tdf)" class="font-size-custom">
+  <div class="row">
+    <div class="col-md-3 offset-1 divColor">
+      <pre>{{tdf.value | json}}</pre>
+  </div>
+    <div class="col-md-6 offset-1">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  class="form-control" required name="userName" [(ngModel)]= "userModel.name">
+        <small class="text-danger" [class.d-none]="name.valid ||name.untouched">email is required</small>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" name="email" email required [(ngModel)]= "userModel.email">
+        <small class="text-danger" [class.d-none]="email.valid ||email.untouched">name is required</small>
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" required class="form-control" name="phone" [(ngModel)]= "userModel.phone">
+        <!-- <small class="text-danger" [class.d-none]="phone.valid ||phone.untouched">phone.no is required and must be 10 digit</small> -->
+        <div *ngIf="phone.errors && (phone.invalid || phone.untouched)">
+          <small class="text-danger" *ngIf="phone.errors.required">phone number is required</small>
+          <small class="text-danger" *ngIf="phone.errors.pattern">phone number must be 10 digit</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <select (change)="validateTopic(topic.value)" class="custom-select" name="topic" #topic="ngModel" [class.is-invalid]="topicHasError"
+                [(ngModel)]="userModel.topics" required >
+          <option value="default">I am interested in</option>
+          <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="!topicHasError" >Please choose a topic</small>
+      </div>
+
+
+      <div class="mb-3">
+        <label>Time preference</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="timePreference" value="morning" [(ngModel)]="userModel.timePreference">
+          <label class="form-check-label"> Morning (9AM - 12PM)</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="timePreference" value="evening" [(ngModel)]="userModel.timePreference">
+          <label class="form-check-label"> Evening (5PM - 8PM)</label>
+        </div>
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="subscribe" [(ngModel)]="userModel.subscribe">
+        <label class="form-check-label">
+          Send me promotional offers
+        </label>
+      </div>
+
+      <input type="submit" class="btn btn-primary" [disabled]="tdf.form.invalid || topicHasError" value="Register" >
+    </div>
+  </div>
+  </form>
+</div>
