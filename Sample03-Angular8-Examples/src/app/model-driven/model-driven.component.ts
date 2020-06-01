@@ -16,6 +16,7 @@ export class ModelDrivenComponent implements OnInit {
   constructor( private fb: FormBuilder ) { }
 
  registrationForm : FormGroup;
+  showDeleteAll : boolean = false;
   //getter methods
   get userName(){ return this.registrationForm.get('userName'); }
   get password(){ return this.registrationForm.get('password'); }
@@ -26,7 +27,18 @@ export class ModelDrivenComponent implements OnInit {
   get alternateEmails() { return this.registrationForm.get('alternateEmails') as FormArray; }
 
   addAlternateEmails(){
-    this.alternateEmails.push(this.fb.control(''));
+    this.alternateEmails.push(this.fb.control('',[emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]));
+    this.showDeleteAll = true;
+  }
+
+  deleteAllAlternateEmails(){
+    this.alternateEmails.clear();
+    this.showDeleteAll = false;
+  }
+
+  deleteAlternateEmailsAtIndex(index){
+    this.alternateEmails.removeAt(index);
+    if(this.alternateEmails.length == 0) this.showDeleteAll = false;
   }
 
   ngOnInit() {

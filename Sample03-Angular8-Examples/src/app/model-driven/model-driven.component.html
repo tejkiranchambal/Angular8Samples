@@ -9,6 +9,7 @@
         <pre>{{dob.errors | json}}</pre>
         <pre>{{email.errors | json}}</pre>
       </div>
+      
       <div class="col-md-6 offset-1">
         <div class="form-group">
           <label>Username</label>
@@ -56,15 +57,26 @@
 
         <div class="form-group">
           <label>Email</label>
-          <button class="btn btn-secondary btn-sm ml-2" (click)="addAlternateEmails()">Add e-mail <i class="fas fa-plus"></i></button>
+          <button class="btn btn-info btn-sm ml-2" (click)="addAlternateEmails()">Add e-mail <i class="fas fa-plus"></i></button>
+          <button class="btn btn-warning btn-sm ml-2" [class.d-none]="!showDeleteAll" (click)="deleteAllAlternateEmails()">Delete All
+          <i class="fas fa-trash-alt"></i></button>
           <input [class.is-invalid]="email.invalid && email.touched" formControlName = "email" type="text" class="form-control" placeholder="Enter valid email">
           <div *ngIf="email.invalid && email.touched">
             <small class="text-danger" *ngIf="email.errors?.pattern">Enter valid Email! </small>
             <small class="text-danger" *ngIf="email.errors?.required">Email Address is required! </small>
             <small class="text-danger" *ngIf="email.errors?.chambalDomain">Email must be on the chambal.com domain</small>
           </div>
-          <div formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i=index">
-            <input class="form-control my-1" [formControlName]="i" placeholder="Enter valid email">
+          <div class="row no-gutters" formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i=index">
+            <div class="col-md-11">
+              <input [class.is-invalid]="email.invalid && email.touched" class="form-control my-1" [formControlName]="i" placeholder="Enter valid email">
+              <div *ngIf="email.invalid && email.touched">
+                <small class="text-danger" *ngIf="email.errors?.pattern">Enter valid Email! </small>
+                <small class="text-danger" *ngIf="email.errors?.chambalDomain">Email must be on the chambal.com domain</small>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <button type="button" class="btn btn-sm my-1" (click)="deleteAlternateEmailsAtIndex(i)"><i class="fas fa-trash-alt text-danger fa-lg"></i></button>
+            </div>
           </div>
         </div>
 
