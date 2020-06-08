@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 //import { FormGroup, FormControl } from "@angular/forms";
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { forbiddenNameValidator } from "../shared/user-name.validator";
-import {passwordValidator} from "../shared/password.validator";
-import {ageValidator} from "../shared/age.validator";
-import {emailDomainValidator} from "../shared/email-domain.validator";
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {forbiddenNameValidator} from '../shared/user-name.validator';
+import {passwordValidator} from '../shared/password.validator';
+import {ageValidator} from '../shared/age.validator';
+import {emailDomainValidator} from '../shared/email-domain.validator';
 
 @Component({
   selector: 'app-model-driven',
@@ -13,38 +13,60 @@ import {emailDomainValidator} from "../shared/email-domain.validator";
 })
 export class ModelDrivenComponent implements OnInit {
 
-  constructor( private fb: FormBuilder ) { }
+  constructor(private fb: FormBuilder) {
+  }
 
- registrationForm : FormGroup;
-  showDeleteAll : boolean = false;
+  registrationForm: FormGroup;
+  showDeleteAll: boolean = false;
+
   //getter methods
-  get userName(){ return this.registrationForm.get('userName'); }
-  get password(){ return this.registrationForm.get('password'); }
-  get confirmPassword() { return this.registrationForm.get('confirmPassword'); }
-  get dob() { return this.registrationForm.get('dob'); }
-  get email(){ return this.registrationForm.get('email');  }
-  get mobile(){ return this.registrationForm.get('mobile');  }
-  get alternateEmails() { return this.registrationForm.get('alternateEmails') as FormArray; }
+  get userName() {
+    return this.registrationForm.get('userName');
+  }
 
-  addAlternateEmails(){
-    this.alternateEmails.push(this.fb.control('',[emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]));
+  get password() {
+    return this.registrationForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registrationForm.get('confirmPassword');
+  }
+
+  get dob() {
+    return this.registrationForm.get('dob');
+  }
+
+  get email() {
+    return this.registrationForm.get('email');
+  }
+
+  get mobile() {
+    return this.registrationForm.get('mobile');
+  }
+
+  get alternateEmails() {
+    return this.registrationForm.get('alternateEmails') as FormArray;
+  }
+
+  addAlternateEmails() {
+    this.alternateEmails.push(this.fb.control('', [emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]));
     this.showDeleteAll = true;
   }
 
-  deleteAllAlternateEmails(){
+  deleteAllAlternateEmails() {
     this.alternateEmails.clear();
     this.showDeleteAll = false;
   }
 
-  deleteAlternateEmailsAtIndex(index){
+  deleteAlternateEmailsAtIndex(index) {
     this.alternateEmails.removeAt(index);
-    if(this.alternateEmails.length == 0) this.showDeleteAll = false;
+    if (this.alternateEmails.length == 0) this.showDeleteAll = false;
   }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      userName : ['', [Validators.required, Validators.minLength(3), forbiddenNameValidator(/admin/)]],
-      password: ['',[Validators.required, Validators.minLength(8), forbiddenNameValidator(/password/),
+      userName: ['', [Validators.required, Validators.minLength(3), forbiddenNameValidator(/admin/)]],
+      password: ['', [Validators.required, Validators.minLength(8), forbiddenNameValidator(/password/),
         Validators.compose([
           Validators.pattern(/\d/),
           Validators.pattern(/[A-Z]/),
@@ -52,28 +74,27 @@ export class ModelDrivenComponent implements OnInit {
           Validators.pattern(/[.!@#$%^&*?]/)]
         )]],
       confirmPassword: ['', [Validators.required]],
-      dob: ['', [Validators.required , ageValidator]],
-      email : ['', [ emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      subscribe : [false],
+      dob: ['', [Validators.required, ageValidator]],
+      email: ['', [emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      subscribe: [false],
       mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/[7-9][0-9]{9}/)]],
-      address : this.fb.group({
-        city : [''],
-        state : [''],
-        pinCode : ['']
+      address: this.fb.group({
+        city: [''],
+        state: [''],
+        pinCode: ['']
       }),
-      alternateEmails : this.fb.array([])
-    }, { validators : passwordValidator } );
-    this.registrationForm.get('subscribe').valueChanges.subscribe(checkedValue =>{
-      if(checkedValue){
+      alternateEmails: this.fb.array([])
+    }, {validators: passwordValidator});
+    this.registrationForm.get('subscribe').valueChanges.subscribe(checkedValue => {
+      if (checkedValue) {
         this.email.setValidators([Validators.required, emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]);
-      }else {
+      } else {
         this.email.clearValidators();
         this.email.setValidators([emailDomainValidator, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]);
       }
       this.email.updateValueAndValidity();
     });
   }
-
 
 
   // Using FormGroup Classes
@@ -110,15 +131,15 @@ export class ModelDrivenComponent implements OnInit {
       confirmPassword: 'Js@123456',
       email: 'Js@chambal.com',
       dob: '1990-03-22',
-      mobile : 9460756423,
-      address : {
+      mobile: 9460756423,
+      address: {
         state: 'Raj',
-        pinCode : '313001'
+        pinCode: '313001'
       }
-    })
+    });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.registrationForm.value);
   }
 }

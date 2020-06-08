@@ -2,12 +2,26 @@ import {InputTextbox} from '../dynamic-form/input-textbox';
 import {Injectable} from '@angular/core';
 import {InputBase1} from '../dynamic-form/InputBase1';
 import {of} from 'rxjs';
+import {InputCombobox} from '../dynamic-form/input-combobox';
+
 @Injectable()
 export class InputServices {
 
 
   getRegistrationData() {
     const inputarr: InputBase1<string>[] = [
+      new InputCombobox({
+        key: 'title',
+        label: 'Title',
+        show: true,
+        value: '',
+        options: [
+          {key: '0', value: '--'},
+          {key: '1', value: 'Mr.'},
+          {key: '2', value: 'Mrs.'}
+        ]
+
+      }),
       new InputTextbox({
         key: 'firstName',
         label: 'First Name',
@@ -23,7 +37,8 @@ export class InputServices {
         key: 'Email',
         label: 'Email',
         value: '',
-        type: 'email'
+        type: 'email',
+        isRequired: true
       }),
       new InputTextbox({
         key: 'phone',
@@ -48,12 +63,14 @@ export class InputServices {
         key: 'Password',
         label: 'Password',
         value: '',
-        type: 'password'
+        type: 'password',
+        isRequired: true
       })
     ];
 
     return of(inputarr);
   }
+
   getLoginData() {
     const inputarr: InputBase1<string>[] = [
 

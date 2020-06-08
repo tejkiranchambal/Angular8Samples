@@ -1,6 +1,22 @@
-<div [formGroup]="form">
-  <div class="form-group">
-  <label [attr.of]="input.key">{{input.label}} </label>
-  <input [formControlName]="input.key" [id]="input.key" [type]="input.type" class="form-control">
-    <div>
+<div [formGroup]="form" class="form-group">
+  <div [ngSwitch]="input.controlType">
+
+
+    <div *ngSwitchCase="'combobox'">
+      <div [hidden]="!input.show">
+      <label [attr.of]="input.key">{{input.label}} </label>
+      <select [id]="input.key" [formGroupName]="input.key" class="form-control" >
+        <option *ngFor="let option of input.options"  [value]="option.key">{{option.value}}</option>
+      </select>
+      </div>
+    </div>
+    <div *ngSwitchCase="'textbox'">
+      <label [attr.of]="input.key">{{input.label}} </label>
+      <input  [formControlName]="input.key" [id]="input.key" [type]="input.type" [placeholder]="input.placeholder" class="form-control">
+    </div>
+  </div>
+  <div class="text-danger"  *ngIf ="!isValid" >Please enter correct value {{input.key}}</div>
+
+
+
 </div>
