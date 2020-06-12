@@ -1,0 +1,14 @@
+<div>
+  <form [formGroup]="form" >
+    <div class="row">
+      <div class="col-md-5 offset-1 divColor">
+         <pre>{{form.value |json}} </pre>
+      </div>
+      <div class="col-md-6  divColor">
+    <div *ngFor="let input of inputItems" class="form-row" >
+      <app-input [input]="input" [form]="form"></app-input>
+    </div>
+      </div>
+    </div>
+  </form>
+</div>
