@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+<br><br><br>
+<input type="text" name="company" #val />
+<button (click) ="submitButton(val)">Submit</button>
+<app-child [company]=value *ngIf = 'status'>{{value}}</app-child>
+  <br><br>
+  <button (click) ="RemoveChild()">Destroy Component</button>
+</div>
+<router-outlet></router-outlet>
