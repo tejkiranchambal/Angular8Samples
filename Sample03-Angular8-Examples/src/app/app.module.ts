@@ -15,6 +15,8 @@ import {InputServices} from './services/input.service';
 import { ShowDynamicComponent } from './show-dynamic/show-dynamic.component';
 import { DynamicLoginComponent } from './dynamic-login/dynamic-login.component';
 import {DynamicLoginService} from './services/dynamic-login.service';
+import { BiodataElementComponent } from './dynamic-forms-demo/biodata-element.component';
+import { BiodataFormComponent } from './dynamic-forms-demo/biodata-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {DynamicLoginService} from './services/dynamic-login.service';
     routingComponents,
     ShowDynamicComponent,
     DynamicLoginComponent,
-    DynamicLoginComponent
+    DynamicLoginComponent,
+    BiodataElementComponent,
+    BiodataFormComponent
   ],
   imports: [
     BrowserModule,

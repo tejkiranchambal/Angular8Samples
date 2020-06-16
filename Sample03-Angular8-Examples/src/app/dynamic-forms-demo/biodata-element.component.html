@@ -1,0 +1,52 @@
+<div [formGroup]="biodataForm" class="form-inline">
+  <div [ngSwitch]="bio.controlType">
+    <div *ngSwitchCase="'text'">
+      <div *ngIf="bio.key == 'alternateEmails'; else elseBlock">
+        <div class="form-inline" formArrayName="alternateEmails"
+             *ngFor="let altEmail of alternateEmails.controls; let idx=index">
+          <label [attr.for]="bio.label">{{bio.label}}</label>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="removeAlternateEmail(idx)">-</button>&nbsp;&nbsp;
+          <input [class.is-invalid]="altEmail.dirty && altEmail.invalid" type="text" [formControlName]="idx"
+                 class="form-control">
+          <!--<div *ngIf="altEmail.dirty && altEmail.invalid">
+            <small class="text-danger" *ngIf="altEmail.errors?.pattern">Incorrect format of email(use
+              abc@abc.abc)
+            </small>
+            <small class="text-danger" *ngIf="!altEmail.errors?.pattern && altEmail.errors?.invalidEmail">Email must
+              be of 'Chambal' domain
+            </small>
+            <small class="text-danger" *ngIf="altEmail.errors?.required">Email is required
+            </small>
+          </div>-->
+          <br><br>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <label [attr.for]="bio.label">{{bio.label}}</label>&nbsp;&nbsp;
+        <input [type]="bio.type" [id]="bio.key" [formControlName]="bio.key" class="form-control">
+        <div *ngIf="biodataForm.get(bio.key).dirty && biodataForm.get(bio.key).invalid">
+          <small class="text-danger" *ngIf="biodataForm.get(bio.key).errors?.required">{{bio.key}} is required!</small>
+          <small class="text-danger" *ngIf="biodataForm.get(bio.key).errors?.minlength">{{bio.key}} must be at least 3 characters!
+          </small>
+          <small class="text-danger" *ngIf="biodataForm.get(bio.key).errors?.forbiddenName">
+            '{{biodataForm.get(bio.key).errors?.forbiddenName.value}}' as name is not allowed!
+          </small>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngSwitchCase="'dropdown'">
+      <label [attr.for]="bio.label">{{bio.label}}</label>&nbsp;&nbsp;
+      <select [id]="bio.key" [formControlName]="bio.key" class="form-control" (change)="callAppropriateFunctions(bio.func)">
+        <option *ngFor="let opt of bio.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+      <div *ngIf="biodataForm.get(bio.key).invalid">
+        <small class="text-danger" *ngIf="biodataForm.get(bio.key).errors?.required">{{bio.key}} is required!</small>
+      </div>
+    </div>
+    <div *ngSwitchCase="'button'">
+    <label [attr.for]="bio.label">{{bio.label}}</label>&nbsp;&nbsp;
+    <button [type]="bio.type" [class]="bio.class" (click)="callAppropriateFunctions(bio.func)">{{bio.value}}</button>
+    </div>
+  </div>
+  <!--<div class="errorMessage" *ngIf="!isValid">{{bio.label}} is required</div>-->
+</div>

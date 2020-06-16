@@ -8,6 +8,7 @@ import {ModelDrivenComponent} from './model-driven/model-driven.component';
 import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
 import {ShowDynamicComponent} from './show-dynamic/show-dynamic.component';
 import {DynamicLoginComponent} from './dynamic-login/dynamic-login.component';
+import {BiodataFormMainComponent} from './dynamic-forms-demo/biodata-form-main.component';
 
 const routes: Routes = [];
 
@@ -19,9 +20,10 @@ const routes: Routes = [];
     { path:'PipesServices', component: PipesServicesComponent },
     {path: 'ModelDrivenForm', component: ModelDrivenComponent},
     {path: 'DynamicForm', component: ShowDynamicComponent},
-    {path: 'DynamicLogin', component: DynamicLoginComponent}
+    {path: 'DynamicLogin', component: DynamicLoginComponent},
+    { path: 'dynamicFormWithEvent', component: BiodataFormMainComponent }
     ]  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ TempDrivenComponent, PipesServicesComponent, ModelDrivenComponent];
+export const routingComponents = [ TempDrivenComponent, PipesServicesComponent, ModelDrivenComponent, BiodataFormMainComponent];
