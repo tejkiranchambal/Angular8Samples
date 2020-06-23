@@ -1,0 +1,24 @@
+<p>employee-list works!</p>
+<br>
+<p> you are in employee list component</p>
+<div class="container">
+  <table border="1" class="table table-striped" >
+    <thead>
+    <tr>
+      <th> ID</th>
+      <th> Name</th>
+      <th> Age</th>
+      <th> Gender</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employeeList | keyvalue">
+      <td> {{employee.value.id}}</td>
+      <td> {{employee.value.name}}</td>
+      <td> {{employee.value.age}}</td>
+      <td> {{employee.value.gender}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
