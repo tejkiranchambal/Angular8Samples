@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import {AppRoutingModule, routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DataService} from './services/data.service';
 import {PersonModule} from "./person/person.module";
+import {ComponentInteractionModule} from './component-interaction/component-interaction.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,9 +16,9 @@ import {PersonModule} from "./person/person.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    SharedModule.forRoot(),
     PersonModule,
-    ReactiveFormsModule
+    ComponentInteractionModule
   ],
   providers: [
     DataService,

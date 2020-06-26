@@ -1,0 +1,13 @@
+<h2 align="center">Tasks</h2><br><br>
+<div class="row">
+  <div class="col-md-4 offset-2 border-right border-dark">
+    <div *ngFor="let task of orionTasks; let idx=index">
+      <div [id]="idx" (click)="setSelectedTaskID(task.id)" [ngClass]="{'divColor' : (selectedTask == task.id)}">
+        {{task.id}} | {{task.type}} {{task.projectName}}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <app-task-details [taskID]="selectedTask"></app-task-details>
+  </div>
+</div>

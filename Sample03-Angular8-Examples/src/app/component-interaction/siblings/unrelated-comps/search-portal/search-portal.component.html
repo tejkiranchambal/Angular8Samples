@@ -1,0 +1,43 @@
+<div *ngIf="activatedRoute.children.length === 0">
+  <h2 align="center">Search Portal</h2><br><br>
+  <form [formGroup]="searchMetadata">
+    <div class="row">
+      <div class="col-md-3 offset-1 divColor">
+        <pre>{{searchMetadata.value | json}}</pre>
+      </div>
+      <div class="col-md-8">
+        <div class="form-inline form-group row offset-1">
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="fullText">
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" (click)="_search()">Search</button>
+          </div>
+        </div>
+        <div class="row"><br></div>
+        <div class="row offset-1">
+          <button class="btn btn-primary" (click)="addNewField()">Add</button>
+        </div>
+        <div class="row"><br></div>
+        <div class="form-inline form-group row offset-1" formArrayName="fields"
+             *ngFor="let field of fields.controls; let idx=index">
+          <div [formGroupName]="idx" class="row">
+            <div class="col-md-2">
+              <button class="btn btn-danger" (click)="removeField(idx)">-</button>
+            </div>
+            <div class="col-md-6">
+              <select class="form-control" formControlName="fieldKey">
+                <option value="">Select an option</option>
+                <option *ngFor="let field of searchableFields">{{field.displayName}}</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" formControlName="fieldValue">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<router-outlet></router-outlet>

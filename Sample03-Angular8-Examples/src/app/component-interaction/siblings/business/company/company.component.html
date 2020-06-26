@@ -1,0 +1,18 @@
+<h2 align="center">The Shoe Store</h2>
+<hr>
+<div class="row">
+  <div class="col-sm-2 offset-4"><h3 align="center">Stock: {{totalStock}}</h3></div>
+  <div class="col-sm-2">
+    <button (click)="addStock()">Add stock</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-4 offset-2">
+    <app-udaipur-outlet [initialStock]="totalStock" class="divColor">sometext</app-udaipur-outlet>
+  </div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4">
+    <app-jaipur-outlet [initialStock]="totalStock"></app-jaipur-outlet>
+  </div>
+</div>

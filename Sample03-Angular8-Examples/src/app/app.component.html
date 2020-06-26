@@ -19,6 +19,36 @@
       <li>
         <a routerLink="ModelDrivenForm" routerLinkActive="active">Model Driven Form </a>
       </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Component Interaction</a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-submenu dropright">
+            <a class="dropdown-item dropdown-toggle" data-toggle="dropdown" href="#">Parent-Child</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu dropright">
+                <a class="dropdown-item dropdown-toggle" data-toggle="dropdown" href="#">Parent to Child</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="tasks" routerLinkActive="active">via @Input() -Tasks</a></li>
+                  <li class="dropdown-submenu dropright">
+                    <a class="dropdown-item dropdown-toggle" data-toggle="dropdown" href="#">Access child methods & variables</a>
+                    <!--http://kfarst.github.io/angular/2017/03/29/component-interaction-in-angular/
+                    https://angular.io/guide/component-interaction
+                    https://blog.angular-university.io/angular-viewchild/-->
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" routerLink="movies-via-template-var" routerLinkActive="active">via local variable -Movies</a></li>
+                      <li><a class="dropdown-item" routerLink="messenger-via-view-child" routerLinkActive="active">via @ViewChild() -Messenger</a></li>
+                      <li><a class="dropdown-item" routerLink="movies-via-view-children" routerLinkActive="active">via @ViewChildren() -Movies</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="dropdown-item" routerLink="thali" routerLinkActive="active">Child to Parent</a></li>
+            </ul>
+          </li>
+          <li><a class="dropdown-item" routerLink="company" routerLinkActive="active">Siblings</a></li>
+          <li><a class="dropdown-item" routerLink="searchPortal" routerLinkActive="active">Unrelated components</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 <br>

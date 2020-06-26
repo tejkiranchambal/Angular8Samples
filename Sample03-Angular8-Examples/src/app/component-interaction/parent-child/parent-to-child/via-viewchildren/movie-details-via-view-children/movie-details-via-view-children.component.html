@@ -1,0 +1,8 @@
+<div>
+  <strong>Name:</strong> {{movie.movieName}}
+  <strong>Directed by:</strong> {{movie.director}}
+  <strong>Produced by:</strong> {{movie.producer}}
+  <strong>Written by:</strong> {{movie.writer}}
+  <!--<fa name="{{starSymbol}}" [ngStyle]="movie.favourite ? {'color': 'red'} : null"></fa>-->
+  <fa name="{{starSymbol}}" [style.color]="movie.favourite ? 'red' : null"></fa>
+</div>

@@ -1,0 +1,14 @@
+<div class="parent">
+  <h6 class="text-center">I Am The THALI!</h6>
+  <div class="d-flex">
+    <div class="col-6 offset-3">
+      <app-samosa [childSamose]="samose" (emitEat)="eatSamosa()"></app-samosa>
+    </div>
+    <div class="col-2">
+      <span (click)="addSamosa()">
+        <fa name="caret-up fa-5x" style="padding-right: 3%; color: sandybrown;"></fa>
+        <fa name="plus fa-2x"></fa>
+      </span>
+    </div>
+  </div>
+</div>

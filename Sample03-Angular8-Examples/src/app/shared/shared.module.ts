@@ -1,16 +1,21 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CustomPipePipe} from "../pipes/custom-pipe.pipe";
+import {CustomPipePipe} from '../pipes/custom-pipe.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     CustomPipePipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  exports:[
-    CustomPipePipe
+  exports: [
+    CustomPipePipe,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {

@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body divColor">
+    <div class="card-title">
+      <span><fa name="bullseye fa-3x" style="color: green;"></fa></span>
+    </div>
+    <p class="card-text">
+      <span (click)="gobble()">
+        <fa *ngFor="let samosa of childSamose"
+            name="caret-up fa-5x"
+            style="padding-right: 3%; color: sandybrown;"></fa>
+      </span>
+    </p>
+    <div>
+      <div *ngIf="childSamose.length > 0;  else elseBlock">
+        Click a samosa to eat it!
+      </div>
+      <ng-template #elseBlock>
+        Thali is empty!
+      </ng-template>
+    </div>
+  </div>
+</div>
